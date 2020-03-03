@@ -1,0 +1,22 @@
+{
+  "name": "koats",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node dist/server.js",
+    "watch-server":"nodemon --watch ./src/server.ts -e ts,tsx --exec ts-node ./src/server.ts" 
+  },
+  "dependencies": {
+    "global": "^4.4.0",
+    "koa": "^2.11.0",
+    "koa-router": "^8.0.8"
+  },
+  "devDependencies": {
+    "@types/koa": "^2.11.2",
+    "@types/koa-router": "^7.4.0",
+    "nodemon": "^2.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3"
+  }
+}
