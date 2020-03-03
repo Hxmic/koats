@@ -1,15 +1,15 @@
 
 import * as Koa from 'koa';
-import * as Router from 'koa-router';
+import * as BodyParser from 'koa-bodyparser';
+import * as Log4js from 'koa-log4';
+import login from './controllers/login';
 
 const app = new Koa();
-const router = new Router();
+// const logger = Log4js.getLogger('app')
 
-router.get('/*', async (ctx) => {
-    ctx.body = '随便一个';
-});
+app.use(BodyParser())
 
-app.use(router.routes());
+app.use(login.routes()).use(login.allowedMethods());
 
 app.listen(3000);
 
