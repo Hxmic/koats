@@ -2,7 +2,7 @@ import * as Path from 'path';
 let baseLogPath: string = Path.resolve(__dirname, '../../logs'); // 日志跟目录
 
 // 错误日志处理
-let errorPath: string = '/error'; // 错误日志目录，相对于根目录
+let errorPath: string = '/errorPath'; // 错误日志目录，相对于根目录
 let errorFileName: string = 'error.log';// 错误日志文件名
 let errorLogPath: string = `${baseLogPath}${errorPath}/${errorFileName}`;//完整的错误日志路径
 
