@@ -6,6 +6,7 @@
         "moduleResolution": "node",
         "sourceMap": true,
         "outDir": "dist",  // TS文件编译后会放入到此文件夹内
+        // "noImplicitAny": false, // false-对不知道的类型默认为any处理
         "baseUrl": ".",
         "paths": {
             "*": [
