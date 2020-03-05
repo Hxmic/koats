@@ -1,18 +1,15 @@
 import * as Koa from 'koa';
 import * as BodyParser from 'koa-bodyparser';
-import * as Log4js from 'koa-log4';
 import * as Json from 'koa-json';
 import * as KoaBody from 'koa-body';
 import * as Cors from 'koa2-cors';
 import LogUtil from './model/log4';
 
 import config from './config';
+import { protectedRouter } from './routers/protectedRoutes';
 
-// mongoose
-import * as mongoose from 'mongoose';
 
-// routes
-import login from './controllers/login';
+
 
 const app = new Koa();
 // const logger = Log4js.getLogger('app')
@@ -61,8 +58,7 @@ app.use(async (ctx: any, next: any) => {
 	}
 })
 
-
-app.use(login.routes()).use(login.allowedMethods());
+app.use(protectedRouter.routes()).use(protectedRouter.allowedMethods());
 
 app.listen(3082);
 app.listen(config.get('port'), () => {
