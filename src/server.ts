@@ -3,16 +3,16 @@ import * as BodyParser from 'koa-bodyparser';
 import * as Json from 'koa-json';
 import * as KoaBody from 'koa-body';
 import * as Cors from 'koa2-cors';
+// 日志记录
 import LogUtil from './model/log4';
-
+// 各个配置文件使用
 import config from './config';
+// 各个路由接口使用
 import { protectedRouter } from './routers/protectedRoutes';
-
-
-
+// mongodb 连接
+import * as mongoose from 'mongoose'; 
 
 const app = new Koa();
-// const logger = Log4js.getLogger('app')
 
 app.use(BodyParser());
 app.use(Json());
@@ -59,6 +59,18 @@ app.use(async (ctx: any, next: any) => {
 })
 
 app.use(protectedRouter.routes()).use(protectedRouter.allowedMethods());
+
+// 连接数据库
+mongoose.connect(config.get('mongo').development.host, 
+	{useNewUrlParser: true, useUnifiedTopology: true}, 
+	function(err: any) {
+		if (err) {
+			console.log('Connection Error' + err);
+		} else {
+			console.log('Connection success');
+		}
+	}
+)
 
 app.listen(3082);
 app.listen(config.get('port'), () => {
